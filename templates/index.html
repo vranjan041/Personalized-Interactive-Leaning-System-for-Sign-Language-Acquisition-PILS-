@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Detection</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        /* display: flex;
+            justify-content: space-between;
+            align-items: center; */
+        padding: 20px;
+        background-color: black;
+      }
+      .left,
+      .right {
+        height: auto;
+        width: 40vw;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: white;
+      }
+
+      h2 {
+        color: white;
+      }
+
+      video {
+        display: block;
+        margin: 0 auto;
+        /* border: 1px solid #ccc; */
+        border-radius: 5px;
+      }
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .window {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Object Detection</h1>
+    <!-- Left section for capturing image -->
+    <div class="window">
+      <div class="left">
+        <h2>Capture Image</h2>
+        <video id="webcam" width="100%" height="462.4px" autoplay></video>
+
+        <!-- <img id="captured_image" src="" alt="Captured Image"> -->
+      </div>
+
+      <!-- Right section for displaying video -->
+      <div class="right">
+        <h2>Detected Objects Video</h2>
+        <video
+          id="detected_video"
+          width="100%"
+          height="462.4px"
+          controls
+        ></video>
+      </div>
+    </div>
+    <button onclick="captureFrame()">Capture Frame</button>
+
+    <script>
+      // Function to capture frame and send to server for object detection
+      function captureFrame() {
+        var canvas = document.createElement("canvas");
+        var video = document.getElementById("webcam");
+        var context = canvas.getContext("2d");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        var data = canvas.toDataURL("image/jpeg");
+
+        // Send the captured frame to server for object detection
+        fetch("/detect_objects", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ image_data: data }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              console.error("Error detecting objects");
+            } else {
+              // Display the captured image
+              // document.getElementById('captured_image').src = data;
+              // Display the detected objects video
+              response
+                .blob()
+                .then((blob) => {
+                  // Create a URL for the Blob
+                  var videoUrl = URL.createObjectURL(blob);
+                  // Display the detected objects video
+                  var videoElement = document.getElementById("detected_video");
+                  videoElement.src = videoUrl;
+                  videoElement.autoplay = true;
+                  videoElement.loop = true;
+                })
+                .catch((error) => {
+                  console.error("Error reading video response:", error);
+                });
+              // console.log(response)
+              // document.getElementById('detected_video').src =video_Path;
+            }
+          })
+          .catch((error) => {
+            console.error("Error detecting objects:", error);
+          });
+      }
+
+      // Get webcam feed
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(function (stream) {
+          var video = document.getElementById("webcam");
+          video.srcObject = stream;
+        })
+        .catch(function (err) {
+          console.log("An error occurred: " + err);
+        });
+    </script>
+  </body>
+</html>

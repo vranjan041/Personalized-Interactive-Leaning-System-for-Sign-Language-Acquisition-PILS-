@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+.left, .right {
+    flex: 1;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+img {
+    width: 100%;
+}
+
+video {
+    width: 100%;
+}

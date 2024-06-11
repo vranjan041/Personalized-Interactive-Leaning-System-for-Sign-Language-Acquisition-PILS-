@@ -1,0 +1,6 @@
+flask==3.0.3
+opencv-python==4.9.0.80
+ultralytics==8.1.45
+supervision==0.19.0
+numpy==1.24.4
+
