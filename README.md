@@ -1,48 +1,58 @@
 Assistive Sign Language Learning System
+Overview
+This project focuses on developing an assistive sign language learning system designed specifically for deaf and mute children with Alzheimer’s disease. The system combines YOLO object detection and MediaPipe Holistic technologies to identify common objects in real-time and generate corresponding American Sign Language (ASL) gestures. By providing an interactive and adaptive learning platform, this system aims to make sign language education more engaging and effective.
 
-Overview:
+Key Features
+Real-time Object Recognition
 
-This project aims to develop an assistive sign language learning system for deaf and mute children with Alzheimer's using YOLO object recognition and holistic MediaPipe. The system is designed to identify common objects in real-time and generate corresponding sign language gestures, providing an engaging and effective learning platform.
+Uses YOLO to detect objects in real-time.
+Sign Language Gesture Mapping
 
-Features:
+Maps detected objects to their corresponding ASL gestures for easy learning.
+Interactive User Interface
 
-Real-time Object Recognition: Utilizes YOLO to detect objects in real-time.
-Sign Language Gesture Generation: Maps detected objects to ASL gestures.
-User-Friendly Interface: Intuitive controls for interaction.
-Testing Module: Evaluates user proficiency in sign language.
-Feedback Mechanism: Helps refine the model based on user input.
+Built with Flask, the interface offers intuitive controls for user interaction.
+Testing and Evaluation Module
 
-Technology Stack:
+Evaluates the user's ASL gesture performance and provides immediate feedback.
+Feedback Mechanism
 
+Allows users to refine the model by offering input, enhancing accuracy over time.
+Technology Stack
 YOLO: For real-time object detection.
-MediaPipe Holistic: For gesture recognition.
-Flask: For creating a user-friendly web interface.
-OpenCV: For image processing and capturing.
-Python: The main programming language used for development.
-
-Usage:
-
-Object Detection and Gesture Mapping:
-The system captures real-time images using a camera.
-YOLO detects objects and maps them to corresponding ASL gestures.
-Detected objects and their gestures are displayed on the web interface.
-
-Testing Module:
-
-The system presents an object image to the user.
+MediaPipe Holistic: For tracking and evaluating user gestures.
+Flask: To create an intuitive web-based user interface.
+OpenCV: For image capture and processing.
+Python: Core programming language for development.
+System Workflow
+Phase 1: Object Detection and Gesture Mapping
+The system captures real-time images using a connected camera.
+YOLO identifies objects in the camera feed.
+Detected objects are mapped to corresponding ASL gestures.
+The object name and its ASL gesture are displayed on the user-friendly web interface.
+Phase 2: Gesture Testing and Feedback
+The system displays an object image to the user.
 The user performs the corresponding ASL gesture.
 The system evaluates the gesture using MediaPipe Holistic.
-If the gesture is incorrect, the system displays the correct gesture.
+If the gesture is incorrect:
+The system displays the correct gesture for guidance.
+Usage Instructions
+Running the System
+Object Detection and Gesture Mapping (Phase 1)
 
-Execution:
-Run app.py for either phases.
+Navigate to the appropriate directory for Phase 1 (default: D:/FirstPart/).
+Run the app.py script to launch the object detection module.
+Gesture Testing and Feedback (Phase 2)
 
-Contributing:
+Navigate to the SecondPart directory.
+Run the corresponding app.py file to launch the testing module.
+Contributing
+We welcome contributions to enhance the system’s features and functionality. Suggestions for improving gesture recognition accuracy, UI design, and feedback mechanisms are highly encouraged.
 
-We welcome contributions to improve this project.
-
-File access:
-All the required files are present in the repository. 
-The files on the first page are related to the first phase of the project where YOLO is used to detect an object and provide the sign for it.
-The folder "SecondPart" contains all the files for the second phase where the model evaluates the sign performed by user.
-Change the paths according to your convinience. It is recommended to store all these files in "D:/FirstPart/" if changing paths is not preferred.
+File Organization
+FirstPart: Contains files for Phase 1 (Object Detection and Gesture Mapping).
+SecondPart: Contains files for Phase 2 (Gesture Testing and Feedback).
+Customization
+Default paths are set to D:/FirstPart/. If you prefer to keep files elsewhere, update the paths in the code accordingly.
+Conclusion
+This system bridges the gap between object recognition and sign language learning, creating a dynamic platform tailored to the unique needs of children with disabilities. Through innovative technologies like YOLO and MediaPipe, it fosters an accessible and inclusive learning environment.
