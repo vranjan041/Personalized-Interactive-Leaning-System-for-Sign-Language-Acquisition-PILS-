@@ -1,6 +1,6 @@
 Assistive Sign Language Learning System
 Overview
-This project focuses on developing an assistive sign language learning system designed specifically for deaf and mute children with Alzheimer’s disease. The system combines YOLO object detection and MediaPipe Holistic technologies to identify common objects in real-time and generate corresponding American Sign Language (ASL) gestures. By providing an interactive and adaptive learning platform, this system aims to make sign language education more engaging and effective.
+This project focuses on developing an assistive sign language learning system designed specifically for deaf and mute children. The system combines YOLO object detection and MediaPipe Holistic technologies to identify common objects in real-time and generate corresponding American Sign Language (ASL) gestures. By providing an interactive and adaptive learning platform, this system aims to make sign language education more engaging and effective.
 
 Key Features
 Real-time Object Recognition
